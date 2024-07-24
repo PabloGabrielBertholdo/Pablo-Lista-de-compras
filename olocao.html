@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de compras</title>
+    <script>
+        let indiceDaLista = 0;
+ 
+        function adicionarItem() {
+            const inputDoUsuario = document.getElementById('texto-do-usuario');
+            const textoDigitado = inputDoUsuario.value;
+ 
+            inputDoUsuario.value = '';
+ 
+            const lista = document.getElementById('lista');
+ 
+            lista.innerHTML += `
+            <li id="item-${indiceDaLista}">
+                <input type="checkbox" name="item-${indiceDaLista}" id="checkbox-item-${indiceDaLista}">
+                ${textoDigitado}
+                <button class="BtRmv" onclick="removerItem(${indiceDaLista})">X</button>
+            </li>
+            `;
+ 
+            indiceDaLista++
+        }
+        
+        function removerItem(id) {
+            const itemParaRemover = document.getElementById(`item-${id}`);
+            itemParaRemover.remove();
+        }
+    </script>
+</head>
+<body>
+    <style>
+        body{
+         display: flex;
+         justify-content: center;
+         background-color: black;
+
+        }
+    .BtRmv{
+     border-radius: 200px;
+    color:black;
+    background-color: red;
+    border-color: red;
+    }
+    .lista{
+       margin-top: 25%;
+       background-color: gray;
+       padding: 42px;
+       border-radius: 20px;
+    }
+    .AddBt{
+      border-radius: 100%;
+    background-color: green;
+    color:black;
+    border-color: green;
+    }
+    </style>
+    <div class="lista"><ul id="lista">
+        
+    </ul>
+    <input type="text" id="texto-do-usuario">
+    <button class="AddBt"onclick="adicionarItem()">+</button>
+    
+</div>
+    
+</body>
+</html>
